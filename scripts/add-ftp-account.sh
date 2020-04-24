@@ -1,7 +1,12 @@
 #!/bin/bash
 
-add_user () {
-    echo "hello world" >> ../data/list_of_users
-}
+add_item() {
+    #echo $1
+    if ls ./data/$1 ; then 
+    exit 8
+    else
+    touch ./data/$1
+    fi
+    }
 
-add_user
+add_item $1

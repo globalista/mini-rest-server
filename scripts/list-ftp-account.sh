@@ -1,7 +1,7 @@
 #!/bin/bash
 
-list_of_users () {
-  cat ./data/list_of_users >&2
+get_items() {
+    echo "$(ls ./data)"
 }
 
-list_of_users
+get_items
