@@ -1,0 +1,8 @@
+#GET
+curl -i <server_adress>/users    #GET <http adress>/users 
+
+#POST <user>
+curl -i -d "name=<user>" -X POST <server_adress>/users
+
+#DELETE <user>
+curl -i -X DELETE <server_adress>/users/<user>

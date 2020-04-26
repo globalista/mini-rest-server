@@ -1,7 +1,7 @@
 #!/bin/bash
 
 add_item() {
-    #echo $1
+    mkdir ./data -p
     if ls ./data/$1 ; then 
     exit 8
     else
