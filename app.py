@@ -16,7 +16,7 @@ def get_users():
     
 @app.route('/users', methods=['POST'])
 def add_user():
-    print(request.form['name'])
+    #print(request.form['name'])
     completed_proc = subprocess.run(['./scripts/add-ftp-account.sh', request.form['name']])
     if completed_proc.returncode == 0:
         return Response(status=200) 

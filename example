@@ -1,5 +1,5 @@
 #GET
-curl -i <server_adress>/users    #GET <http adress>/users 
+curl -i <server_adress>/users    # GET <http adress>/users 
 
 #POST <user>
 curl -i -d "name=<user>" -X POST <server_adress>/users

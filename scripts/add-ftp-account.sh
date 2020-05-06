@@ -2,7 +2,7 @@
 
 add_item() {
     mkdir ./data -p
-    if ls ./data/$1 ; then 
+    if [ -f ./data/$1 ]; then
     exit 8
     else
     touch ./data/$1
