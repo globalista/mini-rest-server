@@ -1,13 +1,15 @@
 #!/bin/bash
 
 delete_item() {
-url="./data/"
-echo "${url}${1}"
-if [ -f "${url}${1}" ]; then 
-    rm "${url}${1}"
+username=$1
+dpath=$2
+
+echo $dpath$username
+if [ -f $dpath$username ]; then 
+    rm $dpath$username
     else
     exit 8
     fi
 }
 
-delete_item $1
+delete_item $1 $2

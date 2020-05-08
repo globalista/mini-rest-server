@@ -1,12 +1,15 @@
 #!/bin/bash
 
 add_item() {
-    mkdir ./data -p
-    if [ -f ./data/$1 ]; then
+    username=$1
+    dpath=$2
+    
+    mkdir $dpath -p
+    if [ -f $dpath$username ]; then
     exit 8
     else
-    touch ./data/$1
+    touch $dpath$username
     fi
     }
 
-add_item $1
+add_item $1 $2

@@ -3,6 +3,8 @@ import subprocess
 
 app = Flask(__name__)
 
+DATA_PATH = './data/'
+
 @app.route('/')
 def index():
     return "Server works!"
@@ -17,7 +19,7 @@ def get_users():
 @app.route('/users', methods=['POST'])
 def add_user():
     #print(request.form['name'])
-    completed_proc = subprocess.run(['./scripts/add-ftp-account.sh', request.form['name']])
+    completed_proc = subprocess.run(['./scripts/add-ftp-account.sh', request.form['name'], DATA_PATH])
     if completed_proc.returncode == 0:
         return Response(status=200) 
     if completed_proc.returncode == 8:
@@ -26,7 +28,7 @@ def add_user():
 
 @app.route('/users/<username>', methods=['DELETE'])
 def delete_user(username):
-    completed_proc = subprocess.run(['./scripts/del-ftp-account.sh', username])
+    completed_proc = subprocess.run(['./scripts/del-ftp-account.sh', username, DATA_PATH])
     if completed_proc.returncode == 0:
         return Response(status=200)
     if completed_proc.returncode == 8:
