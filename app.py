@@ -1,9 +1,12 @@
-from flask import Flask, request, Response
-import subprocess
+from flask import Flask, request
+from application import Application
+from scripts import Scripts
 
-app = Flask(__name__)
+#app = Flask(__name__)
 
-DATA_PATH = './data/'
+my_scripts = Scripts()
+app = Application(my_scripts)
+    
 
 @app.route('/')
 def index():
@@ -11,28 +14,16 @@ def index():
 
 @app.route('/users', methods=['GET'])
 def get_users():
-    completed_proc = subprocess.run('./scripts/list-ftp-account.sh', stdout=subprocess.PIPE)
-    if completed_proc.returncode == 0:
-        return Response(completed_proc.stdout)
-    return Response(status=500) 
-    
+    return app.get_users()
+
 @app.route('/users', methods=['POST'])
 def add_user():
-    #print(request.form['name'])
-    completed_proc = subprocess.run(['./scripts/add-ftp-account.sh', request.form['name'], DATA_PATH])
-    if completed_proc.returncode == 0:
-        return Response(status=200) 
-    if completed_proc.returncode == 8:
-        return Response(status=409)
-    
+    return app.add_user(request.form['name'])
+
 
 @app.route('/users/<username>', methods=['DELETE'])
 def delete_user(username):
-    completed_proc = subprocess.run(['./scripts/del-ftp-account.sh', username, DATA_PATH])
-    if completed_proc.returncode == 0:
-        return Response(status=200)
-    if completed_proc.returncode == 8:
-        return Response(status=404)
-
+    return app.delete_user(username)
+    
 if __name__ == '__main__':
     app.run(debug=True)

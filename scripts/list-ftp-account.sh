@@ -4,4 +4,4 @@ get_items() {
     echo "$(ls ./data)"
 }
 
-get_items
+get_items 

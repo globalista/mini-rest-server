@@ -3,15 +3,8 @@ import glob, subprocess
 
 app.testing = True
 
-'''
-def users_count():
-    response = app.test_client().get('/users')
-    return len(response.data.decode('utf-8').strip().split('\n'))
-'''
-
 def test_app():
     response = app.test_client().get('/')
-
     assert response.status_code == 200
     assert response.data == b'Server works!'
 
@@ -27,7 +20,8 @@ def test_post():
     assert response.status_code == 200
     response = app.test_client().post('/users', data=dict(name="testtest"))
     assert response.status_code == 409
-        
+    response = app.test_client().post('/users', data=dict(name="testtesttest"))
+            
 
 def test_delete():
     response = app.test_client().delete('/users/testtest')
