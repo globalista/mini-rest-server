@@ -2,6 +2,8 @@ from flask import Flask, Response
 
 class Application(Flask):
 
+    # druha varianta je, ze by trida nebyla potomkem Flask tridy, ale mela by instanci Flask tridy jako svou promennou
+
     def __init__(self, scripts):
         super().__init__(__name__)
         self.scripts = scripts
